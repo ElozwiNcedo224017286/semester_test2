@@ -1,4 +1,4 @@
-// src/screens/ProductDetailScreen.js
+
 import React, { useState } from 'react';
 import { View, Text, Image, Button, Alert } from 'react-native';
 import { ref, set, get, child, push, update } from 'firebase/database';
@@ -14,7 +14,6 @@ export default function ProductDetailScreen({ route }) {
   const addToCart = async () => {
     if (!user) { Alert.alert('Login required'); return; }
     const cartRef = ref(database, `carts/${user.uid}/items`);
-    // simple approach: push a cart item
     const newItemRef = push(cartRef);
     await set(newItemRef, {
       productId: product.id,
@@ -23,13 +22,11 @@ export default function ProductDetailScreen({ route }) {
       image: product.image,
       quantity: qty,
     });
-    // Also persist locally
     await saveCartLocal();
     Alert.alert('Added to cart');
   };
 
   const saveCartLocal = async () => {
-    // Fetch remote cart and store locally - simple sync approach
     try {
       const q = ref(database, `carts/${user.uid}`);
       const snap = await get(q);

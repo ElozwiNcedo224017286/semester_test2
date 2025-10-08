@@ -1,8 +1,8 @@
-// App.js
+
 import React from 'react';
 import { ActivityIndicator, View, Text, StyleSheet } from 'react-native';
 import { AuthProvider, useAuth } from './src/context/AuthContext';
-import { CartProvider } from './src/context/CartContext'; // ✅ import the CartProvider
+import { CartProvider } from './src/context/CartContext'; 
 import AppNavigator from './src/AppNavigator';
 
 function MainApp() {
